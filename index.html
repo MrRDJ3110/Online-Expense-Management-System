@@ -1,27 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyberpunk">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Smart Expense Management System</title>
+  <title>QUANTUM // Expense & Financial Intelligence HUD</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="bar">
+  <!-- HUD Ambient Overlay -->
+  <div class="hud-overlay"></div>
+  <div class="hud-scanlines"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="hud-header">
+    <div class="header-content">
       <div class="brand">
-        <div class="brand-mark">₹</div>
-        <div class="brand-text">
-          <h1>Smart Expense</h1>
-          <span class="brand-sub">Management & Analytics System</span>
+        <div class="brand-hexagon">
+          <span>Q</span>
+        </div>
+        <div class="brand-titles">
+          <h1>QUANTUM<span class="version-tag">v4.0.9</span></h1>
+          <span class="sub-title">FINANCIAL INTELLIGENCE HUD</span>
         </div>
       </div>
-      <div id="sess" class="sess-container"></div>
+
+      <!-- Quick Metrics HUD -->
+      <div class="hud-mini-metrics">
+        <div class="metric-chip">
+          <span class="lbl">NET WORTH</span>
+          <span class="val" id="hud-net-worth">$0.00</span>
+        </div>
+        <div class="metric-chip">
+          <span class="lbl">HEALTH INDEX</span>
+          <span class="val neon-green" id="hud-health-score">98/100</span>
+        </div>
+        <div class="metric-chip">
+          <span class="lbl">AI STATUS</span>
+          <span class="val neon-cyan" id="hud-ai-status">ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Global Actions & Profile -->
+      <div class="header-actions">
+        <select id="currency-selector" title="Select Currency" class="hud-select-sm">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="BTC">BTC (₿)</option>
+        </select>
+
+        <button id="theme-toggle" class="hud-btn-icon" title="Toggle Theme Modes">
+          ⚡
+        </button>
+
+        <button id="ai-drawer-btn" class="hud-btn-neon pink">
+          🤖 AI COPILOT
+        </button>
+
+        <div id="user-profile-badge" class="profile-badge"></div>
+      </div>
     </div>
-    <nav id="nav"></nav>
+
+    <!-- Navigation Tabs -->
+    <nav class="hud-nav" id="main-nav"></nav>
   </header>
 
-  <main id="app"></main>
+  <!-- Main View Area -->
+  <main id="app-root" class="hud-main-container"></main>
+
+  <!-- AI Neural Assistant Slide-out Panel -->
+  <aside id="ai-drawer" class="ai-panel">
+    <div class="ai-panel-header">
+      <h3>NEURAL FINANCIAL COPILOT</h3>
+      <button id="close-ai-btn" class="hud-btn-icon">✕</button>
+    </div>
+    <div class="ai-panel-body">
+      <div class="ai-status-card">
+        <div class="ai-pulse"></div>
+        <div>
+          <h4>Neural Engine Core online</h4>
+          <p class="txt-muted">Analyzing real-time cash flow & spending anomalies...</p>
+        </div>
+      </div>
+
+      <div class="ai-chat-history" id="ai-chat-history">
+        <div class="ai-msg bot">
+          Greetings Operator. I have categorized your transactions. Your savings velocity is +14.2% higher than last month.
+        </div>
+      </div>
+
+      <div class="ai-input-group">
+        <input type="text" id="ai-user-prompt" placeholder="Ask AI (e.g. 'Predict next month expenses', 'Suggest budget')...">
+        <button id="ai-send-btn" class="hud-btn-neon">SEND</button>
+      </div>
+
+      <div class="ai-quick-actions">
+        <button class="chip-btn" data-query="predict">🔮 Predict Expenses</button>
+        <button class="chip-btn" data-query="anomaly">⚠️ Anomaly Detection</button>
+        <button class="chip-btn" data-query="budget_rec">🎯 Smart Budget Rec</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal Container -->
+  <div id="modal-container" class="hud-modal-overlay"></div>
 
   <script src="script.js"></script>
 </body>
